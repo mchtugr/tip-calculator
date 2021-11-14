@@ -27,23 +27,23 @@
     <div class="right">
       <div class="right-inner">
         <div class="right-top">
-          <div class="tip-amount">
+          <div class="right-top-row">
             <div class="label">
-              <div>Tip Amount</div>
-              <div>/ person</div>
+              <div class="label-heading">Tip Amount</div>
+              <div class="label-subheading">/ person</div>
             </div>
             <div class="price">$ 0.00</div>
           </div>
-          <div class="total">
+          <div class="right-top-row">
             <div class="label">
-              <div>Tip Amount</div>
-              <div>/ person</div>
+              <div class="label-heading">Total</div>
+              <div class="label-subheading">/ person</div>
             </div>
             <div class="price">$ 0.00</div>
           </div>
         </div>
         <div class="right-bottom">
-          <button>Reset</button>
+          <button class="reset-btn">Reset</button>
         </div>
       </div>
     </div>
@@ -59,7 +59,7 @@ export default {
 <style>
 .card-container {
   background-color: #fff;
-  height: 300px;
+  min-height: 350px;
   width: 700px;
   margin: 0;
   padding: 20px;
@@ -80,6 +80,11 @@ export default {
 
 input {
   width: 100%;
+  line-height: 1.8;
+  text-align: right;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  font-size: 16px;
 }
 
 .tip-grid-container {
@@ -89,7 +94,7 @@ input {
 
 .right {
   width: 50%;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 .right-inner {
@@ -97,5 +102,46 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: hsl(183, 100%, 15%);
+  border-radius: 15px;
+  padding: 30px;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+.right-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.label-heading {
+  font-size: 14px;
+}
+
+.label-subheading {
+  font-size: 11px;
+  color: hsl(185, 41%, 84%);
+}
+
+.price {
+  font-size: 30px;
+  font-weight: 700;
+  color: hsl(172, 67%, 45%);
+}
+
+.reset-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  text-transform: uppercase;
+  font-weight: 700;
+  background-color: hsl(172, 67%, 45%);
+}
+
+.reset-btn:hover {
+  background-color: hsl(172, 67%, 65%);
 }
 </style>
