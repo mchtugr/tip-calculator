@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <h2>SPLIT</h2>
-    <h2>TTER</h2>
+    <div>
+      <h3>SPLIT</h3>
+      <h3>TTER</h3>
+    </div>
     <card />
   </div>
 </template>
@@ -16,4 +18,13 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+#app {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+</style>
