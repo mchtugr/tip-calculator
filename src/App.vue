@@ -1,8 +1,7 @@
 <template>
   <div id="app">
-    <div>
-      <h3>SPLIT</h3>
-      <h3>TTER</h3>
+    <div class="title-container">
+      <logo-svg />
     </div>
     <card />
   </div>
@@ -10,10 +9,12 @@
 
 <script>
 import Card from './components/Card.vue'
+import LogoSvg from './components/ui/LogoSvg.vue'
 export default {
   name: 'App',
   components: {
     Card,
+    LogoSvg,
   },
 }
 </script>
@@ -26,5 +27,9 @@ export default {
   height: 100vh;
   justify-content: center;
   align-items: center;
+}
+
+.title-container {
+  margin-bottom: 40px;
 }
 </style>
