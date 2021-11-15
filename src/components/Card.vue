@@ -20,6 +20,7 @@
             type="radio"
             name="percent"
             v-model="tipPercent"
+            @click="removeCustomInput"
           />
           <label for="five" class="tip-percent">5% </label>
           <input
@@ -28,6 +29,7 @@
             name="percent"
             type="radio"
             v-model="tipPercent"
+            @click="removeCustomInput"
           />
           <label for="ten" class="tip-percent">10% </label>
           <input
@@ -36,6 +38,7 @@
             type="radio"
             name="percent"
             v-model="tipPercent"
+            @click="removeCustomInput"
           />
           <label for="fifteen" class="tip-percent">15% </label>
           <input
@@ -44,6 +47,7 @@
             type="radio"
             name="percent"
             v-model="tipPercent"
+            @click="removeCustomInput"
           /><label for="twentyfive" class="tip-percent">25% </label>
           <input
             id="fifty"
@@ -51,6 +55,7 @@
             type="radio"
             name="percent"
             v-model="tipPercent"
+            @click="removeCustomInput"
           />
           <label for="fifty" class="tip-percent">50% </label>
           <label @click="handleCustomRadio">
@@ -121,11 +126,17 @@ export default {
     PersonSvg,
   },
   data() {
-    return {}
+    return {
+      custom: null,
+      tipPercent: null,
+    }
   },
   methods: {
     handleCustomRadio() {
-      document.getElementById('custom').checked = <true></true>
+      document.getElementById('custom').checked = true
+    },
+    removeCustomInput() {
+      this.custom = null
     },
   },
 }
