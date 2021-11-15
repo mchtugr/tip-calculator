@@ -53,7 +53,21 @@
             v-model="tipPercent"
           />
           <label for="fifty" class="tip-percent">50% </label>
-          <input class="tip-percent custom" placeholder="Custom" />
+          <label @click="handleCustomRadio">
+            <input
+              id="custom"
+              value="custom"
+              type="radio"
+              name="percent"
+              v-model="tipPercent"
+            />
+            <input
+              class="tip-percent custom"
+              v-model="custom"
+              type="number"
+              placeholder="Custom"
+            />
+          </label>
         </div>
       </div>
       <!-- Total People -->
@@ -108,6 +122,11 @@ export default {
   },
   data() {
     return {}
+  },
+  methods: {
+    handleCustomRadio() {
+      document.getElementById('custom').checked = <true></true>
+    },
   },
 }
 </script>
