@@ -3,17 +3,20 @@
     <div class="left">
       <div class="bill">
         <div>Bill</div>
-        <input type="text" />
+        <div class="dollar-svg">
+          <dollar-svg />
+        </div>
+        <input type="number" placeholder="0" />
       </div>
       <div class="select-tip">
         <div>Select Tip %</div>
         <div class="tip-grid-container">
-          <div>5%</div>
-          <div>10%</div>
-          <div>15%</div>
-          <div>25%</div>
-          <div>50%</div>
-          <div>Custom</div>
+          <div class="tip-percent">5%</div>
+          <div class="tip-percent">10%</div>
+          <div class="tip-percent">15%</div>
+          <div class="tip-percent">25%</div>
+          <div class="tip-percent">50%</div>
+          <input class="tip-percent custom" placeholder="Custom" />
         </div>
       </div>
       <div class="total-people">
@@ -21,7 +24,10 @@
           <div>Number of People</div>
           <div class="error">Can't be zero</div>
         </div>
-        <input type="text" />
+        <div class="dollar-svg">
+          <person-svg />
+        </div>
+        <input type="number" placeholder="0" />
       </div>
     </div>
     <div class="right">
@@ -51,8 +57,17 @@
 </template>
 
 <script>
+import DollarSvg from './ui/DollarSvg.vue'
+import PersonSvg from './ui/PersonSvg.vue'
 export default {
   name: 'Card',
+  components: {
+    DollarSvg,
+    PersonSvg,
+  },
+  data() {
+    return {}
+  },
 }
 </script>
 
@@ -80,16 +95,20 @@ export default {
 
 input {
   width: 100%;
-  line-height: 1.8;
+  line-height: 2.4;
   text-align: right;
   font-family: 'Space Mono', monospace;
   font-weight: 700;
   font-size: 16px;
+  background-color: hsl(185, 41%, 84%);
+  border: none;
+  border-radius: 3px;
 }
 
 .tip-grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
 }
 
 .right {
@@ -139,9 +158,37 @@ input {
   text-transform: uppercase;
   font-weight: 700;
   background-color: hsl(172, 67%, 45%);
+  color: hsl(183, 100%, 15%);
 }
 
 .reset-btn:hover {
   background-color: hsl(172, 67%, 65%);
+}
+
+.bill {
+  position: relative;
+}
+
+.total-people {
+  position: relative;
+}
+
+.dollar-svg {
+  position: absolute;
+  bottom: 20px;
+  left: 10px;
+}
+
+.tip-percent {
+  background-color: hsl(183, 100%, 15%);
+  text-align: center;
+  line-height: 2.4;
+  color: hsl(0, 0%, 100%);
+  border-radius: 5px;
+}
+
+.custom {
+  background-color: hsl(185, 41%, 84%);
+  color: black;
 }
 </style>
