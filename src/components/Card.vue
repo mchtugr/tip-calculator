@@ -1,6 +1,8 @@
 <template>
   <div class="card-container">
+    <!-- Left Screen -->
     <div class="left">
+      <!-- Total Bill -->
       <div class="bill">
         <div>Bill</div>
         <div class="dollar-svg">
@@ -8,17 +10,53 @@
         </div>
         <input type="number" placeholder="0" />
       </div>
+      <!-- Tip Percent -->
       <div class="select-tip">
         <div>Select Tip %</div>
         <div class="tip-grid-container">
-          <div class="tip-percent">5%</div>
-          <div class="tip-percent">10%</div>
-          <div class="tip-percent">15%</div>
-          <div class="tip-percent">25%</div>
-          <div class="tip-percent">50%</div>
+          <input
+            id="five"
+            value="five"
+            type="radio"
+            name="percent"
+            v-model="tipPercent"
+          />
+          <label for="five" class="tip-percent">5% </label>
+          <input
+            id="ten"
+            value="ten"
+            name="percent"
+            type="radio"
+            v-model="tipPercent"
+          />
+          <label for="ten" class="tip-percent">10% </label>
+          <input
+            id="fifteen"
+            value="fifteen"
+            type="radio"
+            name="percent"
+            v-model="tipPercent"
+          />
+          <label for="fifteen" class="tip-percent">15% </label>
+          <input
+            id="twentyfive"
+            value="twentyfive"
+            type="radio"
+            name="percent"
+            v-model="tipPercent"
+          /><label for="twentyfive" class="tip-percent">25% </label>
+          <input
+            id="fifty"
+            value="fifty"
+            type="radio"
+            name="percent"
+            v-model="tipPercent"
+          />
+          <label for="fifty" class="tip-percent">50% </label>
           <input class="tip-percent custom" placeholder="Custom" />
         </div>
       </div>
+      <!-- Total People -->
       <div class="total-people">
         <div class="input-label">
           <div>Number of People</div>
@@ -30,9 +68,11 @@
         <input type="number" placeholder="0" />
       </div>
     </div>
+    <!-- Right Screen -->
     <div class="right">
       <div class="right-inner">
         <div class="right-top">
+          <!-- Tip per person -->
           <div class="right-top-row">
             <div class="label">
               <div class="label-heading">Tip Amount</div>
@@ -40,6 +80,7 @@
             </div>
             <div class="price">$ 0.00</div>
           </div>
+          <!-- Total per person -->
           <div class="right-top-row">
             <div class="label">
               <div class="label-heading">Total</div>
@@ -93,6 +134,14 @@ export default {
   justify-content: space-between;
 }
 
+input[type='radio']:checked {
+  display: none;
+}
+
+input[type='radio'] {
+  display: none;
+}
+
 input {
   width: 100%;
   line-height: 2.4;
@@ -103,6 +152,10 @@ input {
   background-color: hsl(185, 41%, 84%);
   border: none;
   border-radius: 3px;
+}
+
+input[type='radio']:checked + label {
+  background-color: hsl(172, 67%, 45%);
 }
 
 .tip-grid-container {
