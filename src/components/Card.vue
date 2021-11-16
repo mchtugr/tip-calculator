@@ -116,7 +116,7 @@
           </div>
         </div>
         <div class="right-bottom">
-          <button class="reset-btn">Reset</button>
+          <button class="reset-btn" @click="resetForm">Reset</button>
         </div>
       </div>
     </div>
@@ -148,8 +148,13 @@ export default {
     removeCustomInput() {
       this.custom = null
     },
+    // clear all states and results
+    resetForm() {
+      this.tipPercent = null
+      this.totalPeople = null
+      this.totalBill = null
+    },
   },
-
   computed: {
     // convert str to number, if custom radio selected return custom input value
     numberTipPercent() {
