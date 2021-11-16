@@ -4,15 +4,15 @@
     <div class="left">
       <!-- Total Bill -->
       <div class="bill">
-        <div>Bill</div>
-        <div class="dollar-svg">
+        <div class="input-label">Bill</div>
+        <div class="input-icon">
           <dollar-svg />
         </div>
         <input type="number" placeholder="0" v-model="totalBill" />
       </div>
       <!-- Tip Percent -->
       <div class="select-tip">
-        <div>Select Tip %</div>
+        <div class="input-label">Select Tip %</div>
         <div class="tip-grid-container">
           <input
             id="five"
@@ -79,9 +79,12 @@
       <div class="total-people">
         <div class="input-label">
           <div>Number of People</div>
-          <div class="error">Can't be zero</div>
+          <!-- show error when input is emty or smaller than 1 -->
+          <div class="error" v-if="!totalPeople || totalPeople < 1">
+            Can't be zero
+          </div>
         </div>
-        <div class="dollar-svg">
+        <div class="input-icon">
           <person-svg />
         </div>
         <input type="number" placeholder="0" v-model="totalPeople" />
@@ -212,6 +215,7 @@ export default {
 .input-label {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 5px;
 }
 
 input[type='radio']:checked {
@@ -308,9 +312,9 @@ input[type='radio']:checked + label {
   position: relative;
 }
 
-.dollar-svg {
+.input-icon {
   position: absolute;
-  bottom: 20px;
+  bottom: 16px;
   left: 10px;
 }
 
@@ -337,5 +341,9 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type='number'] {
   -moz-appearance: textfield;
+}
+
+.error {
+  color: red;
 }
 </style>
