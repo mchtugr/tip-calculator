@@ -153,6 +153,7 @@ export default {
       this.tipPercent = null
       this.totalPeople = null
       this.totalBill = null
+      this.customTip = null
     },
   },
   computed: {
@@ -203,8 +204,7 @@ export default {
 <style>
 .card-container {
   background-color: #fff;
-  min-height: 350px;
-  width: 700px;
+  max-width: 700px;
   margin: 0;
   padding: 20px;
   border-radius: 15px;
@@ -220,7 +220,7 @@ export default {
 .input-label {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 5px;
+  margin: 5px 0;
 }
 
 input[type='radio']:checked {
@@ -257,7 +257,7 @@ input[type='radio']:checked + label {
 
 .right {
   width: 50%;
-  /* padding: 20px; */
+  padding: 20px;
 }
 
 .right-inner {
@@ -319,7 +319,7 @@ input[type='radio']:checked + label {
 
 .input-icon {
   position: absolute;
-  bottom: 16px;
+  bottom: 6px;
   left: 10px;
 }
 
@@ -350,5 +350,29 @@ input[type='number'] {
 
 .error {
   color: red;
+}
+
+@media (max-width: 768px) {
+  .card-container {
+    width: 90%;
+    display: block;
+  }
+  .left {
+    width: 90%;
+  }
+
+  .right {
+    width: 90%;
+  }
+}
+
+@media (max-width: 576px) {
+  .tip-grid-container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .input-icon {
+    bottom: 16px;
+  }
 }
 </style>
