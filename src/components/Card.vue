@@ -8,7 +8,7 @@
         <div class="dollar-svg">
           <dollar-svg />
         </div>
-        <input type="number" placeholder="0" />
+        <input type="number" placeholder="0" v-model="totalBill" />
       </div>
       <!-- Tip Percent -->
       <div class="select-tip">
@@ -16,7 +16,7 @@
         <div class="tip-grid-container">
           <input
             id="five"
-            value="five"
+            value="5"
             type="radio"
             name="percent"
             v-model="tipPercent"
@@ -25,7 +25,7 @@
           <label for="five" class="tip-percent">5% </label>
           <input
             id="ten"
-            value="ten"
+            value="10"
             name="percent"
             type="radio"
             v-model="tipPercent"
@@ -34,7 +34,7 @@
           <label for="ten" class="tip-percent">10% </label>
           <input
             id="fifteen"
-            value="fifteen"
+            value="15"
             type="radio"
             name="percent"
             v-model="tipPercent"
@@ -43,7 +43,7 @@
           <label for="fifteen" class="tip-percent">15% </label>
           <input
             id="twentyfive"
-            value="twentyfive"
+            value="25"
             type="radio"
             name="percent"
             v-model="tipPercent"
@@ -51,7 +51,7 @@
           /><label for="twentyfive" class="tip-percent">25% </label>
           <input
             id="fifty"
-            value="fifty"
+            value="50"
             type="radio"
             name="percent"
             v-model="tipPercent"
@@ -68,7 +68,7 @@
             />
             <input
               class="tip-percent custom"
-              v-model="custom"
+              v-model="customTip"
               type="number"
               placeholder="Custom"
             />
@@ -84,7 +84,7 @@
         <div class="dollar-svg">
           <person-svg />
         </div>
-        <input type="number" placeholder="0" />
+        <input type="number" placeholder="0" v-model="totalPeople" />
       </div>
     </div>
     <!-- Right Screen -->
@@ -97,7 +97,9 @@
               <div class="label-heading">Tip Amount</div>
               <div class="label-subheading">/ person</div>
             </div>
-            <div class="price">$ 0.00</div>
+            <div class="price">
+              $ {{ displayResult ? tipPerPerson : '0.00' }}
+            </div>
           </div>
           <!-- Total per person -->
           <div class="right-top-row">
@@ -105,7 +107,9 @@
               <div class="label-heading">Total</div>
               <div class="label-subheading">/ person</div>
             </div>
-            <div class="price">$ 0.00</div>
+            <div class="price">
+              $ {{ displayResult ? totalPerPerson : '0.00' }}
+            </div>
           </div>
         </div>
         <div class="right-bottom">
@@ -127,16 +131,62 @@ export default {
   },
   data() {
     return {
-      custom: null,
+      customTip: null,
       tipPercent: null,
+      totalPeople: null,
+      totalBill: null,
     }
   },
   methods: {
     handleCustomRadio() {
       document.getElementById('custom').checked = true
+      this.tipPercent = 'custom'
     },
     removeCustomInput() {
       this.custom = null
+    },
+  },
+
+  computed: {
+    // convert str to number, if custom radio selected return custom input value
+    numberTipPercent() {
+      if (this.tipPercent === 'custom') {
+        return Number(this.customTip) / 100
+      } else {
+        return Number(this.tipPercent) / 100
+      }
+    },
+    // convert to Num
+    numberTotalBill() {
+      return Number(this.totalBill)
+    },
+    // convert to Num
+    numberTotalPeople() {
+      return Number(this.totalPeople)
+    },
+    displayResult() {
+      // if one of the input is not available, do not calculate tip
+      if (
+        !this.numberTotalPeople ||
+        !this.numberTipPercent ||
+        !this.numberTotalBill
+      ) {
+        return false
+      } else {
+        return true
+      }
+    },
+    tipPerPerson() {
+      return (
+        (this.numberTotalBill * this.numberTipPercent) /
+        this.numberTotalPeople
+      ).toFixed(2)
+    },
+    totalPerPerson() {
+      return (
+        this.numberTotalBill / this.numberTotalPeople +
+        Number(this.tipPerPerson)
+      ).toFixed(2)
     },
   },
 }
